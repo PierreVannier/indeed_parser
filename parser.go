@@ -10,18 +10,6 @@ import (
 	"time"
 )
 
-// - Compile and launch the server (port 8080 by default)
-// - Create a file (url.json) with a content similar to the following json :
-// {
-// 	"urls": [
-// 	"http://www.indeed.com/viewjob?jk=61c98a0aa32a191b",
-// 	"http://www.indeed.com/viewjob?jk=27342900632b9796",
-// 	"http://www.indeed.com/viewjob?jk=65bc65cb685bbf3e"
-// 	]
-// }
-// - Test and call the server with a call similar to :
-// curl -H "Content-type:application/json" --data @urls.json http://localhost:8080
-
 type MyError struct {
 	At     time.Time
 	Reason string
@@ -114,6 +102,6 @@ func postRequest(rw http.ResponseWriter, request *http.Request) {
 
 func main() {
 	fmt.Println("Server is running...")
-	http.HandleFunc("/", postRequest)
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/get_jobs", postRequest)
+	http.ListenAndServe(":80", nil)
 }
